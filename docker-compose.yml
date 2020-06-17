@@ -1,13 +1,13 @@
 version: "3.2"
 services:
-  backend-server:
-    container_name: backend-server
-    image: tomcat:8.5.43-jdk8
-    volumes:
-      - "war_share:/usr/local/tomcat/webapps"
-    depends_on:
-      - backend-war
-    restart: always
+  # backend-server:
+  #   container_name: backend-server
+  #   image: tomcat:8.5.43-jdk8
+  #   volumes:
+  #     - "war_share:/usr/local/tomcat/webapps"
+  #   depends_on:
+  #     - backend-war
+  #   restart: always
 
   backend-war:
     container_name: backend-war

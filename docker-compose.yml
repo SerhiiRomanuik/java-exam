@@ -1,20 +1,13 @@
 version: "3.2"
 services:
-  # backend-server:
-  #   container_name: backend-server
-  #   image: tomcat:8.5.43-jdk8
-  #   volumes:
-  #     - "war_share:/usr/local/tomcat/webapps"
-
-  #   depends_on:
-  #     - backend-war
-  #   #   - fluentd
-  #   restart: always
-  #   # logging:
-  #   #   driver: "fluentd"
-  #   #   options:
-  #   #     fluentd-address: localhost:24224
-  #   #     tag: docker.backend
+  backend-server:
+    container_name: backend-server
+    image: tomcat:8.5.43-jdk8
+    volumes:
+      - "war_share:/usr/local/tomcat/webapps"
+    depends_on:
+      - backend-war
+    restart: always
 
   backend-war:
     container_name: backend-war
@@ -23,11 +16,9 @@ services:
     image: maven:3.6.1-jdk-8
     volumes:
       - war_share:/app
-      # - ./pom.xml:/pom.xml
-      # - ./src/:/src/
-      - ./java-rest-example/src:/src/
-      - ./java-rest-example/pom.xml:/pom.xml
-    command: mvn spring-boot:run
+      - ./src:/src/
+      - ./pom.xml:/pom.xml
+    command: mvn spring-boot:run # mvn clean install
     restart: always
 
 volumes:
